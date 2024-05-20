@@ -1,0 +1,29 @@
+3 activities:
+- Home page with all 3 games to click on
+-   TicTacToe
+    React-Router: /TicTacToe
+    - Button Start the game (isStaterted state) which is also able to end the game and reset the information
+    - A message indicatin the current player, either X or O
+    - A 3 x 3 Board of arrays with a updated state:
+        [
+            [null, null, null],
+            [null, null, null],
+            [null, null, null],
+        ]
+        - Each cell is a button when clicked takes the crret sybol in the array eg: 
+        [
+            ['X', null, null],
+            ['O', 'X', null],
+            [null, null, 'O'],
+        ]
+        - check with useEffect if any of thre following cases are met:
+                1 - All the cells in a row are the same symbol
+                2 - All the cells in a column are the same symbol
+                3 - All the cells in a diagonal are the same symbol
+        - if no one wins, its tie and the board starts again
+
+- Hangman
+    React-Router: /hangman
+    - start with a list of 10 words
+- Sudoku
+    React-Router : /sudoku
