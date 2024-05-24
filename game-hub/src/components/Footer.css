@@ -1,0 +1,5 @@
+p{
+    color: var(--robin-egg-blue);
+    border-top: solid 1px var(--robin-egg-blue);
+    padding:5px
+}

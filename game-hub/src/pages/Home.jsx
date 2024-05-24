@@ -1,8 +1,11 @@
-
+import './Home.css'
+import Image from "../pics/hi.jpg"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <img id="hi" src={Image} alt="Hi" />
+    </div>
   )
 }
 

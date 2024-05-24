@@ -1,11 +1,81 @@
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Danfo&family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+
+.overpass-reg {
+  font-family: "Overpass", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.overpass-bold {
+  font-family: "Overpass", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: bold;
+}
+.danfo-headline-font {
+  font-family: "Danfo", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "ELSH" 0;
+}
+
+
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: #242424;
-
+  background-color: var(--penn-blue);
+  color: var(--white);
+  font-family: var(--regular-font);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --headline-font: "Danfo", serif;
+  --regular-font: "Overpass", sans-serif;
+
+  --penn-blue: #0C0E24;
+  --robin-egg-blue: #00c2d1ff;
+  --aureolin: #f9e900ff;
+  --sandy-brown: #f6af65ff;
+  --shocking-pink: #ed33b9ff;
+  --white:#ECF8F8;
+
+
+    }
+*{
+  box-sizing: border-box;
+}
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column
+}
+main{
+  flex-grow: 1;
+  display: flex;
+}
+main > div{
+  align-self: center;
+}
+a{
+  list-style: none;
+  text-decoration: underline;
+  font-family: var(--regular-font);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color:var(--aureolin);
+}
+a:hover{
+  color:var(--shocking-pink);
+  cursor:pointer;
+}
+h1 {
+  font-family: var(--headline-font)
 }
