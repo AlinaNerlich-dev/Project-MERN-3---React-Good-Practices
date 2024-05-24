@@ -4,7 +4,7 @@ import './Footer.css'
 const Footer = () => {
   return (
     <footer>
-      <p>--//-- Powered by Game Night Hub --//--</p>
+      <p id="footer">--//-- Powered by Game Night Hub --//--</p>
     </footer>
   )
 }

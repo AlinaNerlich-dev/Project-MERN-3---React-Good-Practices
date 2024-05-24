@@ -5,6 +5,8 @@ nav {
     flex-direction:row;
     align-items:center;
     margin-bottom: 2rem;
+    border-width: thin;
+    border-bottom: .5px solid rgba(255,255,255,.25); 
 }
 ul {
     display: flex;

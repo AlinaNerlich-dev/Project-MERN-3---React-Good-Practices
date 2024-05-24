@@ -52,14 +52,15 @@
 *{
   box-sizing: border-box;
 }
+
 #root{
-  min-height: 100vh;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  min-height: 100vh;
 }
 main{
   flex-grow: 1;
-  display: flex;
+
 }
 main > div{
   align-self: center;
@@ -77,5 +78,8 @@ a:hover{
   cursor:pointer;
 }
 h1 {
-  font-family: var(--headline-font)
+  font-family: var(--headline-font);
+  color: var(--robin-egg-blue);
+  font-size: 6rem;
+  text-shadow: var(--robin-egg-blue) 1px 0 10px;;
 }

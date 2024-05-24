@@ -1,0 +1,11 @@
+#grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+    margin:0 20rem;
+  }
+#grid > button{
+    padding: 30px;
+    background-color:#f6af65FF
+
+}
