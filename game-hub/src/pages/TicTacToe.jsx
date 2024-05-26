@@ -1,29 +1,41 @@
 import { useState } from "react";
-import "./TicTacToe.css"
-import PrimaryButton from "../components/Primary-button";
-import PlayerMessage from "../components/TicTacToe/PlayerMessage";
 import Grid from "../components/TicTacToe/Grid";
 
-
 const TicTacToe = () => {
-  const players = ["🦊", "🐸"];
-  let [player, setPlayer] = useState();
 
-  function choosePlayer() {
-    const player = players[Math.floor(Math.random() * players.length)];
-    setPlayer(player);
+  const [board, setBoard]= useState(
+    [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ]
+  )
+  const elements = board.flat();
+  console.log(elements)
+
+  const [foxPlaying, setFoxPlaying] = useState(true);
+
+ 
+
+  const handleClick = (boxIndex) =>{
+    const updatedBoard = elements.map((value, index) =>{
+      if (index === boxIndex) {
+        return foxPlaying === true ? "🦊": "🐸";
+      } else {
+        return value;
+      }
+    })
+    setBoard(updatedBoard);
+    setFoxPlaying(!foxPlaying);
   }
+
+
+
   return (
     <div>
-      <h1>Tic Tac Toe </h1>
-      <h3>Choose if you want to be 🦊 or 🐸 - then press Start</h3>
-      {player && <PlayerMessage player={player} />}
-      <Grid />
-      <div id="tictactoeButton">
-        <PrimaryButton buttonText="Start" onClick={choosePlayer} />
-      </div>
+        <Grid board={elements} onClick={handleClick} />
     </div>
-  );
-};
+  )
+}
 
-export default TicTacToe;
+export default TicTacToe

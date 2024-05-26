@@ -1,17 +1,16 @@
+/* eslint-disable react/prop-types */
+import Square from "./Square";
 import "./Grid.css"
 
-const Grid = () => {
+const Grid = ({board, onClick}) => {
+
+
+
   return (
     <div id="grid">
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
+        {elements.map((value, index)=>{
+            return <Square key={index} value={value} onClick={() => onClick(index)} />
+        })}
     </div>
   )
 }
