@@ -4,11 +4,9 @@ import "./Grid.css"
 
 const Grid = ({board, onClick}) => {
 
-
-
   return (
     <div id="grid">
-        {elements.map((value, index)=>{
+        {board.map((value, index)=>{
             return <Square key={index} value={value} onClick={() => onClick(index)} />
         })}
     </div>
