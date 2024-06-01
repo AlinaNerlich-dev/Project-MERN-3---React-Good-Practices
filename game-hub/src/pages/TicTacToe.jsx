@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./TicTacToe.css"
 import Grid from "../components/TicTacToe/Grid";
 import PlayerMessage from "../components/TicTacToe/PlayerMessage";
 import PrimaryButton from "../components/Primary-button"
@@ -32,10 +33,12 @@ const TicTacToe = () => {
   const [buttonText, setButtonText] = useState("Start");
   const [showPlayerMessage, setShowPlayerMessage] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState(true);
+  const [winner, setWinner] = useState();
+  const [showWinnerMessage, setShowWinnerMessage] = useState(false)
  
 
+
   const handleClick = (boxIndex) =>{
-    console.log(boxIndex)
     const updatedBoard = board.map((value, index) =>{
       if (index === boxIndex) {
         return foxPlaying === true ? "🦊": "🐸";
@@ -43,14 +46,19 @@ const TicTacToe = () => {
         return value;
       }
     })
-    checkWinner(updatedBoard);
+    const winnerEmoji = checkWinner(updatedBoard);
+    setWinner(winnerEmoji)
     setBoard(updatedBoard);
+
+    if (winnerEmoji){
+      setShowWinnerMessage(true);
+      setButtonDisabled(true)
+      return winner
+    }
     setFoxPlaying(!foxPlaying);
     if (foxPlaying){
       setPlayerMessage("🐸")
     } else {setPlayerMessage("🦊")}
-    
-
   }
 
   const checkWinner = (board) =>{
@@ -59,7 +67,6 @@ const TicTacToe = () => {
       const [x,y,z] = Win_Conditions[i];
       console.log(x,y,z)
       if (board[x] && board[x] === board[y] && board[y] === board[z]){ 
-      console.log(board[x])
       return board[x]}
     }
   }
@@ -69,6 +76,7 @@ const TicTacToe = () => {
     buttonText === "Reset" ? setButtonText("Start") : setButtonText("Reset");
     setShowPlayerMessage(true)
     setButtonDisabled(false)
+    
       setBoard(    [
         null, null, null,
         null, null, null,
@@ -76,18 +84,20 @@ const TicTacToe = () => {
       ])
       if (buttonText === "Reset"){
         setShowPlayerMessage(false);
-        
+        setShowWinnerMessage(false);
       }
     }
 
 
   return (
     <div>
-        {showPlayerMessage && <PlayerMessage player={playerMessage}  />}
+        {showPlayerMessage ? <PlayerMessage player={playerMessage} /> 
+        :  <p className="playerMessage">Choose for Fox or Frog and press Start!</p>}
         <DisabledContext.Provider value={{isButtonDisabled}}>
           <Grid board={board} onClick={handleClick} />
         </DisabledContext.Provider>
         <PrimaryButton buttonText={buttonText} onClick={changeButton}  />
+      { showWinnerMessage && <p id="winner">{winner} won!</p>}
     </div>
   )
 }

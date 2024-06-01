@@ -1,3 +1,23 @@
 #tictactoeButton{
     margin-top: 5rem;
 }
+.playerMessage{
+    font-size: 2.5rem;;
+}
+#winner{
+    font-size: 3rem;
+    
+    color: var(--aureolin);
+    border: 3px solid var(--robin-egg-blue);
+    border-style: dashed;
+    width:fit-content;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1rem var(--robin-egg-blue) solid;
+    animation: blink 1s;
+    animation-iteration-count: 5;
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+
+@keyframes blink { 50% { border-color:var(--aureolin)}  }

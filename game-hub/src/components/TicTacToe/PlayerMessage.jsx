@@ -2,9 +2,11 @@ import "./PlayerMessage.css"
 
 // eslint-disable-next-line react/prop-types
 const PlayerMessage = ({player}) => {
-    console.log(player)
+
   return (
-    <p id="playerMessage">-- Its {player}`s turn --</p>
+    <>
+    <p className="playerMessage"> -- Its {player}`s turn -- </p>
+    </>
   )
 }
 
