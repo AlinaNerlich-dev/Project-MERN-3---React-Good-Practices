@@ -6,7 +6,7 @@ import { useContext } from "react";
 const Square = ({value, onClick}) => {
   const style = value === "🦊" ? "square x" : "square o";
   const {isButtonDisabled} = useContext(DisabledContext);
-  (console.log(isButtonDisabled))
+
   return (
     <button className={style} onClick={onClick} disabled={isButtonDisabled}>{value}</button>
   )
