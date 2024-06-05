@@ -1,0 +1,14 @@
+.letter{
+    font-size: 5rem;
+    letter-spacing: 1rems;
+    visibility: hidden;
+}
+.underline{
+    border-bottom: .1em solid var(--aureolin);
+}
+#wordDashes{
+    display: flex;
+    gap: 1rem;
+    width: fit-content;
+    margin: 0 auto;
+}
