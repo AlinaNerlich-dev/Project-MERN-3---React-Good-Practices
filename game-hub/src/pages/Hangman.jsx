@@ -21,9 +21,18 @@ const Hangman = () => {
     .split("")
     .map((letter, index) => <span key={index} className="underline"><span className="letter">{letter}</span></span>);
  
+
+
+
   const onChange=()=>{
-    const letter= inputRef.current.value;
-    console.log(letter)
+    const letter = inputRef.current.value.toLowerCase()
+
+    if (word.includes(letter)){
+    return letter
+      }
+    else {
+      console.log("no")
+    }
   }
 
   return (

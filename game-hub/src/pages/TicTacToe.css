@@ -6,7 +6,6 @@
 }
 .result{
     font-size: 3rem;
-    
     color: var(--aureolin);
     border: 3px solid var(--robin-egg-blue);
     border-style: dashed;

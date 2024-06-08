@@ -13,4 +13,7 @@ const wordList = [
     "pocket",
   ];
 
+  const usedLetters=[];
+
   export {wordList}
+  export {usedLetters}

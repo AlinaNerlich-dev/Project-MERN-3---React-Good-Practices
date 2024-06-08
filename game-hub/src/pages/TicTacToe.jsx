@@ -36,15 +36,15 @@ const TicTacToe = () => {
   const [showPlayerMessage, setShowPlayerMessage] = useState(false);
   const [isButtonDisabled, setButtonDisabled] = useState(true);
   const [winner, setWinner] = useState();
-  const [showWinnerMessage, setShowWinnerMessage] = useState(false);
-  const [showTieMessage, setShowTieEssage] = useState(false);
+
+  const [gameEndsMessage, setGameEndsMessage] = useState();
   const [clicks, setClicks] = useState(1);
 
   let winnerEmoji = "";
 
   useEffect(() => {
     if (!winnerEmoji && clicks === 9) {
-      setShowTieEssage(true);
+      setGameEndsMessage(`Its a TIE - play again!`)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clicks]);
@@ -67,7 +67,7 @@ const TicTacToe = () => {
     setFoxPlaying(!foxPlaying);
 
     if (winnerEmoji) {
-      setShowWinnerMessage(true);
+      setGameEndsMessage(`${winnerEmoji} won!`)
       setButtonDisabled(true);
       return winner;
     }
@@ -100,10 +100,9 @@ const TicTacToe = () => {
 
     if (buttonText === "Reset") {
       setBoard([null, null, null, null, null, null, null, null, null]);
+      setGameEndsMessage();
       setButtonText("Start")
       setShowPlayerMessage(false);
-      setShowWinnerMessage(false);
-      setShowTieEssage(false);
       setButtonDisabled(true);
     }
   };
@@ -121,8 +120,7 @@ const TicTacToe = () => {
       </DisabledContext.Provider>
       
       <PrimaryButton buttonText={buttonText} onClick={changeButton} />
-      {showWinnerMessage && <p className="result">{winner} won!</p>}
-      {showTieMessage && <p className="result">TIE - You have to Play again</p>}
+      {gameEndsMessage && <p className="result">{gameEndsMessage}</p>}
     </div>
   );
 };
