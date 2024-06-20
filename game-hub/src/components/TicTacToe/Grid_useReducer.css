@@ -1,0 +1,10 @@
+#grid-wrapper{
+    display: inline-block;
+}
+#grid-wrapper > div{
+
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}

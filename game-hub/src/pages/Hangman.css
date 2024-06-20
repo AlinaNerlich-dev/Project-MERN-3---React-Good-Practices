@@ -1,14 +1,50 @@
-.letter{
-    font-size: 5rem;
-    letter-spacing: 1rems;
-    visibility: hidden;
+.hangman {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.underline{
-    border-bottom: .1em solid var(--aureolin);
+
+h1 {
+  margin-bottom: 20px;
 }
-#wordDashes{
-    display: flex;
-    gap: 1rem;
-    width: fit-content;
-    margin: 0 auto;
+
+.word {
+  font-size: 24px;
+  letter-spacing: 10px;
+  margin-bottom: 20px;
+}
+
+.letter {
+  display: inline-block;
+  width: 30px;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+
+.guessed {
+  border-bottom: 2px solid #333;
+}
+
+.not-guessed {
+  border-bottom: 2px solid #ccc;
+  color: transparent;
+}
+
+.wrong-guesses {
+  color: var(--aureolin);
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 50px;
+  text-align: center;
 }

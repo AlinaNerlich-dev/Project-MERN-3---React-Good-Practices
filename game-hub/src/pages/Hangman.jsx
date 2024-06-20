@@ -1,46 +1,71 @@
-import { useRef, useState } from "react";
-import PrimaryButton from "../components/Primary-button";
-import Word from "../components/Hangman/Word";
-import Input from "../components/Hangman/Input";
-import { wordList } from "../utilities.jsx/wordList";
-import { randomInteger } from "../utilities.jsx/functions";
-import "./Hangman.css"
+import { useState, useRef, useEffect } from 'react';
+import "./Hangman.css";
+import PrimaryButton from "../components/Universal/Primary-button.jsx"
+import { wordList } from "../utilities/wordList.js";
+import { getRandomWord } from '../utilities/functions.js';
+
+
 
 
 const Hangman = () => {
-  const [word, setWord] = useState(" ");
+  const [word, setWord] = useState(getRandomWord(wordList));
+  const [guesses, setGuesses] = useState([]);
+  const [wrongGuesses, setWrongGuesses] = useState([]);
   const inputRef = useRef(null);
 
+  const handleGuess = (event) => {
+    event.preventDefault();
+    const guess = inputRef.current.value.toUpperCase();
+    inputRef.current.value = '';
 
-  const startGame = () => {
-    const number = randomInteger(wordList);
-    setWord(wordList[number]);
+    if (guess && !guesses.includes(guess) && !wrongGuesses.includes(guess)) {
+      if (word.includes(guess)) {
+        setGuesses([...guesses, guess]);
+      } else {
+        setWrongGuesses([...wrongGuesses, guess]);
+      }
+    }
   };
 
-  const letterArary = word
-    .split("")
-    .map((letter, index) => <span key={index} className="underline"><span className="letter">{letter}</span></span>);
- 
+  const renderWord = () => {
+    return word.split('').map((letter, index) => (
+      <span key={index} className={`letter ${guesses.includes(letter) ? 'guessed' : 'not-guessed'}`}>
+        {guesses.includes(letter) ? letter : ' X '}
+      </span>
+    ));
+  };
 
+  const isGameOver = wrongGuesses.length >= 10;
+  const isGameWon = word.split('').every((letter) => guesses.includes(letter));
 
+  const resetGame = () => {
+    setWord(getRandomWord());
+    setGuesses([]);
+    setWrongGuesses([]);
+    inputRef.current.value = '';
+  };
 
-  const onChange=()=>{
-    const letter = inputRef.current.value.toLowerCase()
-
-    if (word.includes(letter)){
-    return letter
-      }
-    else {
-      console.log("no")
+  useEffect(() => {
+    if (isGameOver) {
+      alert(`Game over! The word was "${word}".`);
+    } else if (isGameWon) {
+      alert('Congratulations! You guessed the word!');
     }
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isGameOver, isGameWon]);
 
   return (
-    <div>
-      <PrimaryButton buttonText="Start the Game" onClick={startGame} />
-      <Word word={letterArary} />
-      <Input id="input" type="text" ref={inputRef} placeholder="Enter a letter" onChange={onChange} />
-
+    <div className="hangman">
+      <h1>Hangman</h1>
+      <div className="word">{renderWord()}</div>
+      <div className="wrong-guesses">
+        Wrong guesses: {wrongGuesses.join(', ').toUpperCase()}
+      </div>
+      <form onSubmit={handleGuess}>
+        <input type="text" ref={inputRef} maxLength="1" disabled={isGameOver || isGameWon} />
+        <PrimaryButton buttonText={"Guess"} type="submit" disabled={isGameOver || isGameWon} />
+      </form>
+      <PrimaryButton onClick={resetGame} buttonText={"Reset Game"} type="submit" disabled={isGameOver || isGameWon} />
     </div>
   );
 };

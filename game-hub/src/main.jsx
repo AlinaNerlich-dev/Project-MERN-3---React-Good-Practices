@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
-import TicTacToe from './pages/TicTacToe.jsx'
+import TicTacToe_useReducer from './pages/TicTacToe_useReducer.jsx'
 import Hangman from './pages/Hangman.jsx'
 import Sudoku from './pages/Sudoku.jsx'
 import './index.css'
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
-        <Route path="/tictactoe" element={<TicTacToe />} />
+        <Route path="/tictactoe" element={<TicTacToe_useReducer />} />
         <Route path="/hangman" element={<Hangman />} />
         <Route path="/sudoku" element={<Sudoku />} />
       </Route>
