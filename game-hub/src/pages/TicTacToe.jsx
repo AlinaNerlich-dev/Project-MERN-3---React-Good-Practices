@@ -1,128 +1,77 @@
-import { useState, useEffect } from "react";
+/* eslint-disable no-case-declarations */
+/* eslint-disable react/prop-types */
 import "./TicTacToe.css";
+import { calculateWinner } from "../utilities/functions";
 import Grid from "../components/TicTacToe/Grid";
-import PlayerMessage from "../components/TicTacToe/PlayerMessage";
-import PrimaryButton from "../components/Primary-button";
-import DisabledContext from "../components/TicTacToe/context/DisabledContext";
+import PrimaryButton from "../components/Universal/Primary-button";
+import { useReducer } from 'react';
+
+
+const initialState = {
+  board: Array(9).fill(null),
+  xIsNext: true,
+  winner: null,
+  isTie: false,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'MOVE':
+      if (state.winner || state.board[action.index]) {
+        return state;
+      }
+      const updatedBoard = state.board.slice();
+      updatedBoard[action.index] = state.xIsNext ? '🦊' : '🐸';
+      const newWinner = calculateWinner(updatedBoard);
+      const isTie = !newWinner && updatedBoard.flat().every(cell => cell !== null);
+      return {
+        ...state,
+        board: updatedBoard,
+        xIsNext: !state.xIsNext,
+        winner: newWinner,
+        isTie,
+      };
+    case 'RESET':
+      return initialState;
+    default:
+      return state;
+  }
+}
+
 
 const TicTacToe = () => {
-  const Win_Conditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state)
 
-  const [board, setBoard] = useState([
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]);
-  // const board = board.flat();
+  function handleClick(i) {
+    dispatch({ type: 'MOVE', index: i });
+  }
 
-  const [foxPlaying, setFoxPlaying] = useState(true);
-  const [playerMessage, setPlayerMessage] = useState("🦊");
-  const [buttonText, setButtonText] = useState("Start");
-  const [showPlayerMessage, setShowPlayerMessage] = useState(false);
-  const [isButtonDisabled, setButtonDisabled] = useState(true);
-  const [winner, setWinner] = useState();
+  function handleReset() {
+    dispatch({ type: 'RESET' });
+  }
 
-  const [gameEndsMessage, setGameEndsMessage] = useState();
-  const [clicks, setClicks] = useState(1);
-
-  let winnerEmoji = "";
-
-  useEffect(() => {
-    if (!winnerEmoji && clicks === 9) {
-      setGameEndsMessage(`Its a TIE - play again!`)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clicks]);
-
-  const handleClick = (boxIndex) => {
-    setClicks((clicks) => clicks + 1);
-
-    const updatedBoard = board.map((value, index) => {
-      if (index === boxIndex) {
-        return foxPlaying === true ? "🦊" : "🐸";
-      } else {
-        return value;
-      }
-    });
-
-    winnerEmoji = checkWinner(updatedBoard);
-
-    setWinner(winnerEmoji);
-    setBoard(updatedBoard);
-    setFoxPlaying(!foxPlaying);
-
-    if (winnerEmoji) {
-      setGameEndsMessage(`${winnerEmoji} won!`)
-      setButtonDisabled(true);
-      return winner;
-    }
-
-    if (foxPlaying) {
-      setPlayerMessage("🐸");
-    } else {
-      setPlayerMessage("🦊");
-    }
-  };
-
-
-  const checkWinner = (board) => {
-    for (let i = 0; i < Win_Conditions.length; i++) {
-      const [x, y, z] = Win_Conditions[i];
-      if (board[x] && board[x] === board[y] && board[y] === board[z]) {
-        return board[x];
-      }
-    }
-  };
-
-  const changeButton = () => {
-
-    if (buttonText === "Start"){
-      setButtonText("Reset");
-      setShowPlayerMessage(true);
-      setButtonDisabled(false);
-      setClicks(0);
-    }
-
-    if (buttonText === "Reset") {
-      setBoard([null, null, null, null, null, null, null, null, null]);
-      setGameEndsMessage();
-      setButtonText("Start")
-      setShowPlayerMessage(false);
-      setButtonDisabled(true);
-    }
-  };
+  const winner = state.winner;
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else if (state.isTie) {
+    status = 'It\'s a tie!';
+  } else {
+    status = 'Next player: ' + (state.xIsNext ? '🦊' : '🐸');
+  }
 
   return (
-    <div>
-      {showPlayerMessage ? (
-        <PlayerMessage player={playerMessage} />
-      ) : (
-        <p className="playerMessage">Choose for Fox or Frog and press Start!</p>
-      )}
-
-      <DisabledContext.Provider value={{ isButtonDisabled }}>
-        <Grid board={board} onClick={handleClick} />
-      </DisabledContext.Provider>
-      
-      <PrimaryButton buttonText={buttonText} onClick={changeButton} />
-      {gameEndsMessage && <p className="result">{gameEndsMessage}</p>}
+    <div className="game">
+      <div className="game-board">
+        <Grid board={state.board} onClick={handleClick} />
+      </div>
+      <div className="game-info">
+        <div id="result">{status}</div>
+        <PrimaryButton buttonText={"Reset"} onClick={handleReset}/>
+      </div>
     </div>
   );
-};
+}
 
 export default TicTacToe;

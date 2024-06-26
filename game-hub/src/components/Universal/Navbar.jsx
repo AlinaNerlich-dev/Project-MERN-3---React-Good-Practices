@@ -1,5 +1,5 @@
 import './Navbar.css'
-import Logo from "../pics/gamenight.jpg";
+import Logo from "../../pics/gamenight.jpg";
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {

@@ -4,7 +4,7 @@
 .playerMessage{
     font-size: 2.5rem;;
 }
-.result{
+#result{
     font-size: 3rem;
     color: var(--aureolin);
     border: 3px solid var(--robin-egg-blue);

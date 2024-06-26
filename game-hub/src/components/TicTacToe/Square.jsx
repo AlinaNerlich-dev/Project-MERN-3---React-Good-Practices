@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
 import "./Square.css"
-import DisabledContext from "./context/DisabledContext"
-import { useContext } from "react";
 
-const Square = ({value, onClick}) => {
-  const style = value === "🦊" ? "square x" : "square o";
-  const {isButtonDisabled} = useContext(DisabledContext);
-
+const Square = ({ value, onClick }) => {
   return (
-    <button className={style} onClick={onClick} disabled={isButtonDisabled}>{value}</button>
-  )
+    <button className="square" onClick={onClick}>
+      {value}
+    </button>
+  );
 }
 
-export default Square
+export default Square;

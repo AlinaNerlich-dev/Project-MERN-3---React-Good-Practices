@@ -62,7 +62,7 @@ const Hangman = () => {
         Wrong guesses: {wrongGuesses.join(', ').toUpperCase()}
       </div>
       <form onSubmit={handleGuess}>
-        <input type="text" ref={inputRef} maxLength="1" disabled={isGameOver || isGameWon} />
+        <input type="text" ref={inputRef} maxLength="1" disabled={isGameOver || isGameWon} placeholder="Type your guess here"/>
         <PrimaryButton buttonText={"Guess"} type="submit" disabled={isGameOver || isGameWon} />
       </form>
       <PrimaryButton onClick={resetGame} buttonText={"Reset Game"} type="submit" disabled={isGameOver || isGameWon} />

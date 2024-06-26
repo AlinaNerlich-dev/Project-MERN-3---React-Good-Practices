@@ -2,15 +2,16 @@
 import Square from "./Square";
 import "./Grid.css"
 
-const Grid = ({board, onClick}) => {
+const Grid = ({ board, onClick }) => {
+  function renderSquare(i) {
+    return <Square key={i} value={board[i]} onClick={() => onClick(i)} />;
+  } 
 
   return (
     <div id="grid">
-        {board.map((value, index)=>{
-            return <Square key={index} value={value} onClick={() => value === null && onClick(index)} />
-        })}
+      {board.map((_, i) => renderSquare(i))}
     </div>
-  )
+  );
 }
 
-export default Grid
+export default Grid;
