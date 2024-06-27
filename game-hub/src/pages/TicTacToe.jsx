@@ -63,6 +63,7 @@ const TicTacToe = () => {
 
   return (
     <div className="game">
+      <h1>Tic Tac Toe</h1>
       <div className="game-board">
         <Grid board={state.board} onClick={handleClick} />
       </div>

@@ -5,24 +5,24 @@ import { wordList } from "../utilities/wordList.js";
 import { getRandomWord } from '../utilities/functions.js';
 
 
-
-
 const Hangman = () => {
   const [word, setWord] = useState(getRandomWord(wordList));
   const [guesses, setGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
+  const [alertShown, setAlertShown] = useState(false);
   const inputRef = useRef(null);
 
   const handleGuess = (event) => {
     event.preventDefault();
-    const guess = inputRef.current.value.toUpperCase();
+    const guess = inputRef.current.value;
     inputRef.current.value = '';
 
     if (guess && !guesses.includes(guess) && !wrongGuesses.includes(guess)) {
       if (word.includes(guess)) {
-        setGuesses([...guesses, guess]);
+        setGuesses((prevGuesses) => [...prevGuesses, guess]);
       } else {
-        setWrongGuesses([...wrongGuesses, guess]);
+        console.log('wrong ')
+        setWrongGuesses((prevWrongGuesses) => [...prevWrongGuesses, guess]);
       }
     }
   };
@@ -39,20 +39,25 @@ const Hangman = () => {
   const isGameWon = word.split('').every((letter) => guesses.includes(letter));
 
   const resetGame = () => {
-    setWord(getRandomWord());
+    setWord(getRandomWord(wordList));
     setGuesses([]);
     setWrongGuesses([]);
+    setAlertShown(false); 
     inputRef.current.value = '';
   };
 
   useEffect(() => {
-    if (isGameOver) {
-      alert(`Game over! The word was "${word}".`);
-    } else if (isGameWon) {
-      alert('Congratulations! You guessed the word!');
+    if ((isGameOver || isGameWon)) {
+      setTimeout(() => {
+        if (isGameOver) {
+          alert(`Game over! The word was "${word}".`);
+        } else if (isGameWon) {
+          alert('Congratulations! You guessed the word!');
+        }
+        setAlertShown(true); 
+      }, 100);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGameOver, isGameWon]);
+  }, [isGameOver, isGameWon, alertShown, word]);
 
   return (
     <div className="hangman">
