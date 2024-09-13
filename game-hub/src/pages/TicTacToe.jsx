@@ -41,7 +41,6 @@ const reducer = (state, action) => {
 
 const TicTacToe = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state)
 
   function handleClick(i) {
     dispatch({ type: 'MOVE', index: i });
@@ -68,7 +67,7 @@ const TicTacToe = () => {
         <Grid board={state.board} onClick={handleClick} />
       </div>
       <div className="game-info">
-        <div id="result">{status}</div>
+        { !winner ? <div className="status">{status}</div> : <div className="status" id="result">{status}</div> }
         <PrimaryButton buttonText={"Reset"} onClick={handleReset}/>
       </div>
     </div>

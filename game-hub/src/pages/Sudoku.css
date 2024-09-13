@@ -1,0 +1,81 @@
+/* Set up the grid for the Sudoku board with proper gaps between 3x3 sections */
+.sudoku-board {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 2px; /* Small gap between individual cells */
+    margin: 1rem auto;
+    padding: 1rem;
+    max-width: 27rem; /* Fixed width for the board */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+  }
+  
+  /* Create a larger gap after every third column (for horizontal 3x3 separation) */
+  .sudoku-board input:nth-child(3n) {
+    margin-right: 8px;
+  }
+  
+  /* Create a larger gap after every third row in the 3x3 grids (for vertical 3x3 separation) */
+  .sudoku-board input:nth-child(27n) {
+    margin-bottom: 8px;
+  }
+  
+  /* Additional row separation for all blocks */
+  .sudoku-board input:nth-child(9n + 1) {
+    margin-left: 8px;
+  }
+  
+  /* Styles for each individual Sudoku cell */
+
+  .sudoku-cell {
+    border: none;
+    border-radius: 10%;
+    box-shadow: 0px 0px 4px #888888;
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center; /* Center the text horizontally */
+    font-size: 1.5rem;
+    font-family: "Fredoka", sans-serif;
+    font-weight: bold;
+    background-color: var(--sandy-brown);
+    padding: 0;
+    margin: 0;
+    line-height: 2.5rem; /* Vertically center by matching height */
+    -moz-appearance: textfield; /* Remove number arrows on Firefox */
+  }
+  
+  /* Hide the increment/decrement arrows for number inputs by default */
+  .sudoku-cell::-webkit-inner-spin-button,
+  .sudoku-cell::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Hide arrows by default in WebKit-based browsers */
+    margin: 0;
+  }
+  
+  /* Show the arrows on hover and focus */
+  .sudoku-cell:hover::-webkit-inner-spin-button,
+  .sudoku-cell:hover::-webkit-outer-spin-button,
+  .sudoku-cell:focus::-webkit-inner-spin-button,
+  .sudoku-cell:focus::-webkit-outer-spin-button {
+    -webkit-appearance: auto; /* Re-enable the spin button on hover/focus */
+  }
+  
+  .sudoku-cell:hover,
+  .sudoku-cell:focus {
+    box-shadow: 0px 0px 10px #888;
+  }
+  
+  .sudoku-cell:focus {
+    outline: none;
+    box-shadow: 0px 0px 12px #555;
+  }
+
+.buttons_how_to_continue{
+    display: flex;
+    justify-content: space-between;
+}  
+#message{
+    font-size: 1.2rem;
+    color: var(--aureolin);
+    margin-bottom: 20px;
+}

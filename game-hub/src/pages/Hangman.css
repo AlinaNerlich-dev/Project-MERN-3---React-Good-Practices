@@ -2,21 +2,24 @@
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
+
 
 h1 {
   margin-bottom: 20px;
 }
 
+
 .word {
-  font-size: 24px;
+  margin: 2rem auto;
+  font-size: 2rem;
   letter-spacing: 10px;
-  margin-bottom: 20px;
 }
 
 .letter {
   display: inline-block;
-  width: 30px;
+  width: 40px;
   margin-right: 5px;
   text-transform: uppercase;
 }
@@ -32,8 +35,12 @@ h1 {
 }
 
 .wrong-guesses {
+  font-size: 1.2rem;
   color: var(--aureolin);
   margin-bottom: 20px;
+}
+.wrong-guesses-letter {
+  text-transform: uppercase;
 }
 
 form {

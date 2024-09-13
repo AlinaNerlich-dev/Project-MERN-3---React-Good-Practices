@@ -1,0 +1,215 @@
+
+.sudokuSquare{
+    border: none;
+    border-radius: 10%;
+    box-shadow: 0px 0px 8px #888888;
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    font-size: 1em;
+    font-family: "Fredoka", sans-serif;
+    font-weight: bold;
+    margin: 0.5rem;
+    background-color: var(--sandy-brown);
+}
+.sudokuSquare:hover{
+    box-shadow: 0px 0px 15px #888;
+}
+
+.sudokuSquare:nth-of-type(3n) {
+       margin-right:3rem;
+}
+.sudokuSquare:nth-of-type(3n-2) {
+    margin-left:3rem;
+}
+.sudokuSquare:nth-of-type(1) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(2) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(3) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(4) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(5) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(6) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(7) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(8) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(9) {
+    margin-top:3rem;
+}
+
+.sudokuSquare:nth-of-type(19) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(20) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(21) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(22) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(23) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(24) {
+    margin-bottom:3rem;
+}
+
+.sudokuSquare:nth-of-type(25) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(26) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(27) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(28) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(29) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(30) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(31) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(32) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(33) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(34) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(35) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(36) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(28) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(29) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(30) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(31) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(32) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(33) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(34) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(36) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(46) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(47) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(48) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(49) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(50) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(51) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(52) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(53) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(54) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(55) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(56) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(57) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(58) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(59) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(60) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(61) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(62) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(63) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(55) {
+    margin-top:3rem;
+}
+.sudokuSquare:nth-of-type(73) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(74) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(75) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(76) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(77) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(78) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(79) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(80) {
+    margin-bottom:3rem;
+}
+.sudokuSquare:nth-of-type(81) {
+    margin-bottom:3rem;
+}

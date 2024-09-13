@@ -1,16 +1,23 @@
+.status{
+  font-size: 1.5rem;
+  color: var(--aureolin);
+  border: 1.5px solid var(--robin-egg-blue);
+  border-style: dashed;
+  width:fit-content;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+}
 #result{
-    font-size: 3rem;
-    color: var(--aureolin);
-    border: 3px solid var(--robin-egg-blue);
-    border-style: dashed;
-    width:fit-content;
-    padding: 1.5rem;
-    border-radius: 10px;
-    border: 1rem var(--robin-egg-blue) solid;
     animation: blink 1s;
     animation-iteration-count: 5;
-    margin: 0 auto;
-    margin-top: 3rem;
 }
+
+@media only screen and (max-width: 600px) {
+    #result {
+      font-size: 1.2rem;
+    }
+  }
 
 @keyframes blink { 50% { border-color:var(--aureolin)}  }

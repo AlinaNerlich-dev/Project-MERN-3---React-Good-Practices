@@ -1,0 +1,7 @@
+#sudokuGrid{
+    display: grid;
+    grid-template-columns: repeat(9, 5rem);
+    grid-template-rows: repeat(9, 5rem);;
+    place-items: center;
+    justify-content: center; 
+}

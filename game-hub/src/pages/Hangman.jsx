@@ -1,15 +1,49 @@
-import { useState, useRef, useEffect } from 'react';
+import { useReducer, useRef, useEffect } from 'react';
 import "./Hangman.css";
-import PrimaryButton from "../components/Universal/Primary-button.jsx"
+import PrimaryButton from "../components/Universal/Primary-button.jsx";
 import { wordList } from "../utilities/wordList.js";
 import { getRandomWord } from '../utilities/functions.js';
 
+const initialState = {
+  word: getRandomWord(wordList),
+  guesses: [],
+  wrongGuesses: [],
+  alertShown: false
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'NEW_GAME':
+      return {
+        word: getRandomWord(wordList),
+        guesses: [],
+        wrongGuesses: [],
+        alertShown: false
+      };
+    case 'ADD_GUESS':
+      if (state.word.includes(action.payload)) {
+        return {
+          ...state,
+          guesses: [...state.guesses, action.payload]
+        };
+      } else {
+        return {
+          ...state,
+          wrongGuesses: [...state.wrongGuesses, action.payload]
+        };
+      }
+    case 'SHOW_ALERT':
+      return {
+        ...state,
+        alertShown: true
+      };
+    default:
+      return state;
+  }
+};
 
 const Hangman = () => {
-  const [word, setWord] = useState(getRandomWord(wordList));
-  const [guesses, setGuesses] = useState([]);
-  const [wrongGuesses, setWrongGuesses] = useState([]);
-  const [alertShown, setAlertShown] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const inputRef = useRef(null);
 
   const handleGuess = (event) => {
@@ -17,60 +51,54 @@ const Hangman = () => {
     const guess = inputRef.current.value;
     inputRef.current.value = '';
 
-    if (guess && !guesses.includes(guess) && !wrongGuesses.includes(guess)) {
-      if (word.includes(guess)) {
-        setGuesses((prevGuesses) => [...prevGuesses, guess]);
-      } else {
-        console.log('wrong ')
-        setWrongGuesses((prevWrongGuesses) => [...prevWrongGuesses, guess]);
-      }
+    if (guess && !state.guesses.includes(guess) && !state.wrongGuesses.includes(guess)) {
+      dispatch({ type: 'ADD_GUESS', payload: guess });
     }
   };
 
   const renderWord = () => {
-    return word.split('').map((letter, index) => (
-      <span key={index} className={`letter ${guesses.includes(letter) ? 'guessed' : 'not-guessed'}`}>
-        {guesses.includes(letter) ? letter : ' X '}
+    return state.word.split('').map((letter, index) => (
+      <span key={index} className={`letter ${state.guesses.includes(letter) ? 'guessed' : 'not-guessed'}`}>
+        {state.guesses.includes(letter) ? letter : ' _ '}
       </span>
     ));
   };
 
-  const isGameOver = wrongGuesses.length >= 10;
-  const isGameWon = word.split('').every((letter) => guesses.includes(letter));
+  const isGameOver = state.wrongGuesses.length >= 10;
+  const isGameWon = state.word.split('').every((letter) => state.guesses.includes(letter));
 
   const resetGame = () => {
-    setWord(getRandomWord(wordList));
-    setGuesses([]);
-    setWrongGuesses([]);
-    setAlertShown(false); 
+    dispatch({ type: 'NEW_GAME' });
     inputRef.current.value = '';
   };
 
   useEffect(() => {
-    if ((isGameOver || isGameWon)) {
+    if ((isGameOver || isGameWon) && !state.alertShown) {
       setTimeout(() => {
         if (isGameOver) {
-          alert(`Game over! The word was "${word}".`);
+          alert(`Game over! The word was "${state.word}".`);
         } else if (isGameWon) {
           alert('Congratulations! You guessed the word!');
         }
-        setAlertShown(true); 
+        dispatch({ type: 'SHOW_ALERT' });
       }, 100);
     }
-  }, [isGameOver, isGameWon, alertShown, word]);
+  }, [isGameOver, isGameWon, state.alertShown, state.word]);
 
   return (
     <div className="hangman">
-      <h1>Hangman</h1>
-      <div className="word">{renderWord()}</div>
-      <div className="wrong-guesses">
-        Wrong guesses: {wrongGuesses.join(', ').toUpperCase()}
-      </div>
-      <form onSubmit={handleGuess}>
-        <input type="text" ref={inputRef} maxLength="1" disabled={isGameOver || isGameWon} placeholder="Type your guess here"/>
-        <PrimaryButton buttonText={"Guess"} type="submit" disabled={isGameOver || isGameWon} />
-      </form>
-      <PrimaryButton onClick={resetGame} buttonText={"Reset Game"} type="submit" disabled={isGameOver || isGameWon} />
+        <h1>Hangman</h1>
+        <div className="word">{renderWord()}</div>
+        <div className="wrong-guesses">
+          Wrong guesses: <span className="wrong-guesses-letter">{state.wrongGuesses.join(', ')}</span>
+        </div>
+        <form onSubmit={handleGuess}>
+          <input type="text" ref={inputRef} maxLength="1" disabled={isGameOver || isGameWon} placeholder="Type your guess here" />
+          <PrimaryButton buttonText={"Guess"} type="submit" disabled={isGameOver || isGameWon} />
+        </form>
+        <div className="reset-button">
+          <PrimaryButton  onClick={resetGame} buttonText={"Reset Game"} type="button" />
+        </div>
     </div>
   );
 };

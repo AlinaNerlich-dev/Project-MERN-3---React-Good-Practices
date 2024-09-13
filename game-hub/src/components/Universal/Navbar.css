@@ -1,10 +1,10 @@
 nav {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction:row;
     align-items:center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-width: thin;
     border-bottom: .5px solid rgba(255,255,255,.25); 
 }
@@ -15,7 +15,7 @@ ul {
 }
 
 #logo{
-    width: 15%;
+    width:60%;
     height: auto;
     border-radius: 50%;
 }

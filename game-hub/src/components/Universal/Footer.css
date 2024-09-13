@@ -1,5 +1,12 @@
 #footer{
     color: var(--robin-egg-blue);
     border-top: solid 1px var(--robin-egg-blue);
-    padding:5px
+    padding:5px;
+    margin-bottom:0;
+    margin-top: 1.5rem;
 }
+@media only screen and (max-width: 600px) {
+    #footer{
+      font-size: .8rem;
+    }
+  }

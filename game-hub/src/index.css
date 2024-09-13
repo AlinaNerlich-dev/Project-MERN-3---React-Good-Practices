@@ -24,8 +24,6 @@
     "ELSH" 0;
 }
 
-
-
 :root {
   line-height: 1.5;
   font-weight: 400;
@@ -54,12 +52,22 @@
 }
 
 #root{
+  padding: 1rem;
+  padding-bottom: .5rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
+  max-width: 1280px;
+  text-align: center;
+  margin: 0 auto;
 }
 main{
   flex-grow: 1;
+  justify-content: center;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 
 }
 main > div{
@@ -72,6 +80,7 @@ a{
   font-weight: 600;
   font-size: 1.2rem;
   color:var(--aureolin);
+  width: fit-content;
 }
 a:hover{
   color:var(--shocking-pink);
@@ -81,6 +90,48 @@ h1 {
   margin: 0;
   font-family: var(--headline-font);
   color: var(--robin-egg-blue);
-  font-size: 6rem;
+  font-size: 4rem;
   text-shadow: var(--robin-egg-blue) 1px 0 10px;;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+.logo {
+  will-change: filter;
+  transition: filter 300ms;
+  width: 20%;
+  align-self: center;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }
